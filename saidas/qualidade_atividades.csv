@@ -9,7 +9,7 @@ Validade,tipo fora dos seis do enunciado,atenção,"486,864 linhas em inglês (r
 Validade,origem fora da lista do dicionário,ok,0 linhas,0,Nenhum,0.0
 Validade,inicio que não converte em data,ok,"0 linhas; um único formato, sem fuso",0,Nenhum,0.0
 Validade,identificador fora do padrão ou conta sem cadastro,ok,0 atividade_id; 0 user_id e 0 treino_com fora do padrão; 0 sem cadastro,0,Se houver: excluir e registrar,0.0
-Validade,treino com duração 0,atenção,"3,649 linhas, espalhadas por todos os meses, tipos e origens; 1,991 têm distância",3649,"Contar o treino, mas tratar a duração como ausente (fora de somas e médias de minutos). Para treino ao ar livre com distância e ritmo, dá para recalcular: duração = distância × ritmo",0.29
+Validade,treino com duração 0,atenção,"3,649 linhas, espalhadas por todos os meses, tipos, origens e 3,242 contas; 2,651 têm distância ou FC e se parecem com os demais treinos; 998 (quase todos de vídeo, do app) não têm outra prova",3649,"Contar o treino e tratar a duração como ausente (fora de somas e médias de minutos). Marcar os que não têm distância nem FC, para rodar o modelo com e sem eles",0.29
 Validade,treino com mais de 5h,esperado,"607 linhas: {'pedal': 576, 'corrida': 31}; até 544 min",607,"Manter: pedal longo e corridas de ultra são plausíveis. Usar mediana, não média, ao resumir minutos",0.05
 Validade,ritmo fora da faixa do tipo,ok,0 linhas,0,Nenhum,0.0
 Validade,frequência cardíaca fora de 40-220,ok,0 linhas,0,Nenhum,0.0

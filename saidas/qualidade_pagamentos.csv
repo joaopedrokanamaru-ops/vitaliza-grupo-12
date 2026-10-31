@@ -1,0 +1,29 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,campos vazios,ok,0 células vazias,0,Nenhum,0.0
+Completude,início ou renovação sem pagamento aprovado,ok,"0 de 159,989 eventos",0,Nenhum,0.0
+Completude,pagamento aprovado sem início ou renovação,ok,"0 de 161,930 pagamentos",0,Nenhum,0.0
+Completude,chargeback ou estorno sem evento correspondente,ok,chargeback: 296 de 296; estornado: 72 de 72,0,Nenhum,0.0
+Completude,"cobrança com o desconto de 30% da campanha de agosto (R$ 27,93)",atenção,0 cobranças; nenhum valor diferente dos preços de tabela e do cupom de influenciador,0,Não dá para medir o custo do cupom da campanha por este arquivo. Conferir com campanha_ago26.csv quem recebeu a oferta; pode ser que ninguém tenha usado ou que o desconto não tenha sido registrado,0.0
+Completude,pagamentos de contas de teste,ok,0,0,Se houver: excluir,0.0
+Validade,metodo fora da lista do dicionário,ok,0 linhas,0,Nenhum,0.0
+Validade,status fora da lista do dicionário,ok,0 linhas,0,Nenhum,0.0
+Validade,tentativa que não é inteiro positivo,ok,0 linhas,0,Nenhum,0.0
+Validade,"valor em dois formatos (0.00 e R$ 0,00)",atenção,"19,750 linhas em R$ 0,00: todas as cobranças do site até 2025-06-30 (as 44 do período em 0.00 são chargeback, estornado); nenhuma depois, o que sugere mudança no sistema do site em julho de 2025. Todas convertem (0 falhas)",19750,Converter os dois formatos para número antes de somar; somar o texto daria erro ou ignoraria essas linhas,11.93
+Validade,"valor fora dos preços conhecidos (34,90, 39,90, 299,90, 239,90)",ok,0 linhas,0,Nenhum,0.0
+Validade,data_hora que não converte em data,ok,0 linhas,0,Nenhum,0.0
+Validade,identificador fora do padrão ou user_id sem cadastro,ok,0 pagamento_id; 0 user_id fora do padrão; 0 sem cadastro,0,Nenhum,0.0
+Consistência,formato de data diferente do esperado para o método,ok,0 linhas,0,Nenhum,0.0
+Consistência,sinal do valor incoerente com o status,ok,0 linhas,0,Nenhum,0.0
+Consistência,chargeback ou estorno com valor diferente do que foi cobrado,atenção,"179 de 368: devolvem o preço de tabela (-39,90 sobre cobrança de 34,90; -299,90 sobre cobrança de 239,90 com cupom)",179,"Na conta de receita, usar como devolução o valor da cobrança original, não o valor da linha negativa",0.11
+Consistência,mensal cobrado pelo preço antigo depois do reajuste,esperado,"16 cobranças de R$ 34,90 entre 01/03 e 12/03/2026; 0 de R$ 39,90 antes",16,"Poucos casos, nos primeiros dias de março: provável transição de preço. Manter e citar ao analisar o reajuste",0.01
+Consistência,valor incoerente com o plano do evento,ok,"0 de 161,930",0,Nenhum,0.0
+Consistência,método diferente do canal do evento,ok,"0 de 161,930",0,Nenhum,0.0
+Consistência,coluna tentativa não marca a nova tentativa depois de uma recusa,atenção,"1,827 de 1,881 novas cobranças após recusa vêm com tentativa = 1; 4,812 de 4,866 linhas com tentativa = 2 não têm recusa antes",6639,Não usar a coluna tentativa. Identificar a nova tentativa pela sequência: recusado seguido de aprovado do mesmo usuário em até 16 dias. O significado de tentativa = 2 não está no dicionário: perguntar ao dono do dado,4.01
+Consistência,recusa sem desfecho (nem nova cobrança nem expiração),ok,"0 de 3,250",0,Se houver: olhar a sequência do usuário,0.0
+Consistência,período de carência sem recusa no mesmo dia,ok,"0 de 1,346",0,Nenhum,0.0
+Unicidade,pagamento_id repetido ou linha inteira repetida,ok,0 e 0,0,Nenhum,0.0
+Unicidade,mesma cobrança gravada duas vezes com pagamento_id seguido,atenção,"1,941 cópias (1.2% dos aprovados), R$ 118,295.90 a mais; explica a diferença entre pagamentos aprovados e inícios + renovações",1941,Remover a cópia (manter o menor pagamento_id) antes de somar receita ou contar cobranças,1.17
+Temporalidade,cobranças fora do período 01/07/2024 a 30/09/2026,ok,0 antes e 0 depois,0,Nenhum,0.0
+Temporalidade,cobranças que mudam de dia ao acertar o fuso,esperado,"12,871 linhas; lendo só o texto, 30 pareceriam posteriores ao corte",12871,Usar a data convertida para Brasília (decisão já registrada para eventos_assinatura.csv),7.77
+Temporalidade,meses sem cobrança ou com salto acima de 50%,ok,0 meses vazios; 0 saltos,0,Nenhum,0.0
+Temporalidade,ciclo mensal longo explicado por recusa,esperado,"1,158 de 1,158 ciclos longos têm recusa entre as cobranças: confirma a hipótese aberta em eventos_assinatura.csv",1158,"Não é erro: é a nova tentativa depois da recusa. Ao medir atraso de pagamento, usar a sequência recusado -> aprovado",0.7

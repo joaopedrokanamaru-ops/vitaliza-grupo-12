@@ -4,3 +4,5 @@ dados/
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
+# links locais para .agents/skills (o Claude Code lê .claude/skills)
+.claude/skills/

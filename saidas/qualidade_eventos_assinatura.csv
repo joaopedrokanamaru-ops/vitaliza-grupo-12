@@ -1,0 +1,30 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,plano vazio em evento que não é trial_*,esperado,"6,734 linhas, todas renovacao_automatica_desligada até 8 dias após o início do trial (6,734): a pessoa desliga a renovação durante o teste grátis",6734,"Não é erro. Tratar como evento do trial (cancelamento no teste), não da assinatura",2.44
+Completude,detalhe (motivo) ausente em assinatura_expirada,atenção,"11,759 de 17,830 expirações sem motivo (66%); assinaturas.csv tem motivo_fim em todas",11759,Não usar detalhe como fonte de motivo; usar motivo_fim de assinaturas.csv (casando por user_id e data),4.27
+Completude,assinaturas sem evento de início (iniciadas a partir de 01/07/2024),ok,"0 de 27,383",0,Se houver: reconstruir o início pela data de inicio de assinaturas.csv e marcar a origem,0.0
+Completude,assinaturas encerradas sem evento de expiração,ok,"0 de 17,830",0,Se houver: usar data_fim de assinaturas.csv como fim,0.0
+Completude,evento de início sem assinatura em assinaturas.csv,ok,0 eventos,0,Se houver: investigar antes de usar; podem ser assinaturas apagadas do retrato,0.0
+Completude,eventos de contas de teste,ok,0 eventos,0,"Se houver: excluir, como em assinaturas.csv",0.0
+Validade,evento fora da lista do dicionário,ok,0 linhas,0,"Nenhum se for zero; se não, mapear para o valor do dicionário",0.0
+Validade,plano fora da lista do dicionário,ok,0 linhas,0,"Nenhum se for zero; se não, mapear para o valor do dicionário",0.0
+Validade,canal_cobranca fora da lista do dicionário,ok,0 linhas,0,"Nenhum se for zero; se não, mapear para o valor do dicionário",0.0
+Validade,detalhe fora dos motivos de assinaturas.csv,ok,0 linhas,0,O dicionário não lista os valores de detalhe; confirmar com o dono do dado se aparecer valor novo,0.0
+Validade,data_hora que não converte em data,ok,"0 linhas; dois formatos: 186,323 em UTC e 89,242 em Brasília",0,Converter cada formato com seu fuso para uma coluna única em horário de Brasília,0.0
+Validade,user_id fora do padrão ou sem cadastro,ok,0 fora do padrão; 0 sem cadastro,0,Se houver: excluir e registrar,0.0
+Consistência,formato de data diferente do esperado para o canal,ok,0 linhas (loja sem Z ou site com Z),0,"Nenhum se for zero; se não, decidir o fuso pelo formato da linha, não pelo canal",0.0
+Consistência,cancelamento_web em canal de loja,ok,0 linhas,0,"Nenhum se for zero; se não, tratar como renovacao_automatica_desligada",0.0
+Consistência,assinatura_iniciada com assinatura já ativa,ok,0 linhas,0,"Nenhum se for zero; se não, olhar a sequência do usuário antes de reconstruir a situação",0.0
+Consistência,assinatura_expirada sem assinatura ativa,ok,0 linhas,0,"Nenhum se for zero; se não, olhar a sequência do usuário antes de reconstruir a situação",0.0
+Consistência,evento de assinatura registrado depois da expiração,esperado,"398 linhas ({'renovacao_automatica_desligada': 211, 'chargeback': 136, 'reembolso': 40, 'cancelamento_web': 11}); 398 chegam até 24h depois da expiração: são avisos atrasados da assinatura que acabou de terminar",398,"Ao reconstruir, atribuir eventos de até 24h após a expiração à assinatura que terminou",0.14
+Consistência,usuário que começa o log já assinante sem assinatura antiga em assinaturas.csv,ok,"0 de 5,200 usuários",0,Se houver: o início dessas assinaturas se perdeu; usar inicio de assinaturas.csv,0.0
+Consistência,situação no fim do log diferente de status_atual,ok,0 usuários divergem; 0 ativos do retrato sem nenhum evento,0,Se houver: decidir qual fonte vale para o corte e registrar em decisoes.md,0.0
+Consistência,assinatura que muda de plano no log,ok,"0 de 32,583 assinaturas",0,"Pode ser troca legítima (mensal para anual); usar o plano do evento, não o plano_atual do retrato, ao olhar o passado",0.0
+Consistência,assinatura que muda de canal no log,ok,"0 de 32,583 assinaturas",0,"Não é esperado sem nova assinatura; se houver, investigar",0.0
+Consistência,trial sem desfecho (nem expiração nem assinatura) e iniciado há mais de 8 dias,ok,0 de 470 trials em aberto,0,Trials dos últimos 7 dias estão em andamento; os mais antigos indicam evento faltando,0.0
+Unicidade,linhas inteiras repetidas,ok,0,0,Se houver: manter a primeira,0.0
+Unicidade,"mesmo usuário, evento e instante (fuso acertado)",ok,0,0,Se houver: manter a primeira,0.0
+Unicidade,mesmo evento do mesmo usuário a menos de 24h,ok,0 linhas; 0 a exatamente 3h,0,Se houver: tratar como duplicata e manter a primeira,0.0
+Temporalidade,eventos fora do período 01/07/2024 a 30/09/2026,ok,0 antes e 0 depois,0,Se houver: excluir os posteriores ao corte,0.0
+Temporalidade,eventos que mudam de dia ao acertar o fuso,atenção,"21,951 linhas; lendo só o texto, 44 pareceriam posteriores ao corte",21951,Sempre usar a data convertida para Brasília para contar por dia ou mês,7.97
+Temporalidade,meses sem evento ou com salto acima de 50%,ok,0 meses vazios; 0 saltos,0,Se houver: conferir se é falha de envio antes de calcular churn do mês,0.0
+Temporalidade,"renovação fora do intervalo esperado (mensal 27-33 dias, anual 360-370)",atenção,"2,225 de 128,253 cobranças; sem carência entre elas; ciclo longo seguido de ciclo curto que volta ao dia original, mais frequente no cartão",2225,Provável cobrança recusada e aprovada na nova tentativa; confirmar com pagamentos.csv (coluna tentativa),0.81

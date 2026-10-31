@@ -1,0 +1,7 @@
+etapa,criterio,linhas,removidas
+0. Todas as assinaturas,assinaturas.csv sem filtro,32643,0
+1. Iniciadas até o corte,inicio <= 2026-09-30,32643,0
+2. Ativas no corte,status_atual == 'ativa' (sem data_fim),14813,17830
+3. Junção com usuarios,left join por user_id (confere que não ganha nem perde linha),14813,0
+4. Sem contas de teste,e-mail não termina em @vitaliza.com.br,14753,60
+5. Um assinante por conta,user_id único,14753,0

@@ -2,5 +2,5 @@ tabela,passo,linhas,observacao
 amizades,0. Arquivo bruto,113480,"0 nas checagens de completude, validade e unicidade"
 amizades,1. Até o corte,113207,273 removidas (desde > 30/09/2026)
 amizades,2. Marca de reciprocidade,113207,"84,498 recíprocas"
-rede_por_conta,3. Uma linha por conta,64769,"10,607 sem nenhuma relação"
+rede_por_conta,3. Uma linha por conta,63929,"9,767 sem nenhuma relação"
 rede_mes,4. Uma linha por linha do painel,327771,"240,568 com alguma relação"

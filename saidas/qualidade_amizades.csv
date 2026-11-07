@@ -1,0 +1,22 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,"vazio em seguidor_id, seguido_id ou desde",ok,0,0,Nenhum,0.0
+Completude,relações com contas de teste (@vitaliza.com.br),ok,0,0,"Se houver: excluir, como nos outros arquivos",0.0
+Completude,relações com contas-cópia de usuarios.csv (e-mail em maiúsculas),ok,0,0,Se houver: excluir com as cópias,0.0
+Completude,seguidor_id ou seguido_id sem cadastro em usuarios.csv,ok,0,0,Nenhum,0.0
+Completude,contas válidas sem nenhuma relação até o corte,esperado,"9,767 de 63,929 contas (15.3%); na rede: 07/2024 em diante: 84.0%; antes de 07/2024: 92.9%",0,"Nenhum: seguir é opcional. Na análise, conta fora da rede tem 0 seguidores (não é dado faltante)",0.0
+Validade,id fora do padrão u_[0-9a-f]{8},ok,0,0,Nenhum,0.0
+Validade,desde que não converte em data,ok,0; padrões: {'9999-99-99': 113480},0,Nenhum,0.0
+Validade,conta seguindo a si mesma,ok,0,0,Nenhum,0.0
+Consistência,relação anterior ao cadastro de quem segue ou de quem é seguido,ok,0,0,Nenhum,0.0
+Consistência,relação recíproca (a pessoa seguida segue de volta),esperado,"85,044 linhas (74.9%) em 42,522 pares; a volta vem de 0 a 9 dias depois (mediana 4)",85044,Nenhum: comportamento da rede,74.94
+Consistência,treino em companhia entre contas que não se seguem,esperado,"722 de 14,137 treinos com companhia (5.1%); o dicionário diz que seguir e treinar junto são coisas diferentes",0,Nenhum: não tratar treino em companhia como relação de seguir (nem o contrário),0.0
+Unicidade,par seguidor -> seguido repetido,ok,0,0,Nenhum,0.0
+Unicidade,linha inteira repetida,ok,0,0,Nenhum,0.0
+Unicidade,ida e volta no mesmo dia (possível duplicata nos dois sentidos),esperado,"4,295 pares (8,590 linhas); a média dos dias 1 a 9 é 4,247: o dia 0 não se destaca",8590,Nenhum: são duas relações,7.57
+Unicidade,conta com rede fora do padrão (centenas de relações),ok,máximo de 13 relações em cada sentido,0,Nenhum,0.0
+Temporalidade,relação antes do lançamento (09/2020),ok,0,0,Nenhum,0.0
+Temporalidade,relação com desde depois do corte,atenção,"273 relações de 01/10 a 09/10/2026, todas a volta de uma relação começada até o corte (0 a 9 dias antes): o arquivo foi exportado depois de 01/10/2026",273,Excluir relações com desde depois de 30/09/2026 antes de contar seguidores ou reciprocidade,0.24
+Temporalidade,mês sem relação nova,ok,0,0,Nenhum,0.0
+Temporalidade,salto acima de 50% nas relações novas,esperado,"2024-07, 2024-08, 2024-09: acompanha a entrada das contas a partir de 07/2024 (mudança de universo de usuarios.csv); no primeiro ano, cada conta forma quase o mesmo número de relações nas duas coortes. 2020-10: mês seguinte ao lançamento, sobre uma base de poucas contas",4330,"Nenhum; para comparar épocas, usar relações por conta, não o total",3.82
+Temporalidade,relações só se formam nos primeiros ~4 meses da conta mais nova,atenção,"todas as 70,958 idas acontecem de 0 a 119 dias depois do cadastro da conta mais nova, em distribuição uniforme, e nenhuma depois; a volta vem até 9 dias depois. Duas contas veteranas nunca passam a se seguir. Hipótese a confirmar com o dono do dado: regra do produto (sugestão de quem seguir só no começo) ou recorte do arquivo",113480,"Não usar 'começou a seguir alguém nos últimos N dias' como sinal de engajamento: depois de 4 meses de casa ele é zero para todos. Usar o número de relações no corte, comparando contas com o mesmo tempo de casa",100.0
+Temporalidade,relações desfeitas antes da exportação (o dicionário não diz se somem),atenção,sem coluna de fim da relação; hipótese a confirmar com o dono do dado,0,"Perguntar ao dono do dado; até lá, tratar o número de seguidores no corte como aproximado e não usá-lo sozinho como preditor de saída",0.0

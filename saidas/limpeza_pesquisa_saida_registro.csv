@@ -1,0 +1,5 @@
+passo,regra,linhas,removidas,alteradas
+0. Arquivo bruto,pesquisa_saida.csv sem filtro,643,0,0
+1. Data e comentário,data_resposta; comentário vazio vira ausente; comentario_norm em minúsculas,643,0,183
+2. Tema e motivo ajustado,objetivo_cumprido quando o comentário fala em prova ou objetivo cumprido,643,0,158
+3. Resposta mais recente,marca a última resposta de cada conta,643,0,0

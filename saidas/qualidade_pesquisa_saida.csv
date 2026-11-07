@@ -1,0 +1,17 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,comentário vazio ou sem conteúdo,esperado,183 vazios (28%) e 0 sem conteúdo,183,Nenhum: o comentário é opcional,28.46
+Completude,motivo_principal vazio,ok,0,0,Nenhum,0.0
+Completude,"linhas de contas de teste, cópias ou sem cadastro",ok,teste: 0; cópias: 0; sem cadastro: 0,0,Se houver: excluir,0.0
+Completude,população da pesquisa (números-prova do dicionário e do enunciado),ok,contas que responderam: 641; respondentes entre os fins de jun-set: 353; respostas de quem seguia ativo no corte: 289; respondentes sem cancelamento web: 0,0,Nenhum,0.0
+Completude,cobertura do motivo declarado,atenção,"353 dos 3,389 fins de assinatura de jun-set (10%) têm resposta; 641 das 1,164 contas que cancelaram pelo site (55%) responderam; quem paga pela loja nunca vê a pesquisa",0,"Não generalizar o motivo declarado para todos os que saem (viés de seleção, como diz o enunciado)",0.0
+Validade,motivo_principal fora da lista do dicionário,ok,0,0,Nenhum,0.0
+Validade,respondido_em que não converte,ok,0,0,Nenhum,0.0
+Validade,mesmo comentário com maiúsculas diferentes,atenção,1 comentários em 20 respostas,20,Comparar comentários em minúsculas,3.11
+Consistência,resposta de quem não paga pelo site,ok,0,0,Nenhum,0.0
+Consistência,resposta sem cancelamento web no mesmo dia,ok,0,0,Nenhum,0.0
+Consistência,motivo marcado diferente do tema do comentário,atenção,"86 de 158 comentários com tema comparável (54%), a maioria marcada como 'preco'; e 158 'objetivo cumprido / era só até a prova', motivo que não existe na lista, marcados como {'outro': 85, 'preco': 65, 'nao_uso': 5, 'outro_app': 3}",244,Não usar o motivo marcado sozinho: ler o comentário junto (extração com IA generativa) e criar o motivo 'objetivo cumprido' quando o comentário disser,37.95
+Privacidade,"e-mail, telefone, CPF ou @ no comentário",ok,"{'e-mail': 0, 'telefone': 0, 'CPF': 0, '@ de perfil': 0}",0,Se houver: mascarar antes de qualquer envio a IA,0.0
+Unicidade,resposta_id repetido,ok,0,0,Nenhum,0.0
+Unicidade,conta com duas respostas,esperado,"2 contas, cada uma com dois cancelamentos web em datas diferentes (cancelou, religou e cancelou de novo)",4,"Nenhum: são dois cancelamentos; para motivo por conta, usar a resposta mais recente",0.62
+Temporalidade,resposta antes de 01/06/2026 ou depois do corte,ok,0,0,Nenhum,0.0
+Temporalidade,taxa de resposta por mês,ok,de 48% a 57%,0,Nenhum,0.0

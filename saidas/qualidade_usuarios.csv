@@ -1,0 +1,38 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,vazio nas colunas preenchidas pelo app ou pelo marketing,ok,0,0,Nenhum,0.0
+Completude,nascimento vazio,esperado,"3,301 (5.1%); taxa por ano de 4.8% a 6.2%",3301,"Campo digitado e opcional na prática: manter como 'não informado', sem imputar",5.08
+Completude,sexo vazio,esperado,"3,142 (4.8%); taxa por ano de 4.1% a 4.9%",3142,"Campo digitado e opcional na prática: manter como 'não informado', sem imputar",4.84
+Completude,CEP vazio,esperado,"1,894 (2.9%); taxa por ano de 2.8% a 3.3%",1894,"Campo digitado e opcional na prática: manter como 'não informado', sem imputar",2.92
+Completude,nascimento disfarçado de vazio (1900-01-01),atenção,412 contas com 1900-01-01 (idade de 126 anos); nenhum outro ano antes de 1952,412,Tratar como nascimento não informado (somar aos vazios),0.63
+Completude,contas de teste (@vitaliza.com.br),atenção,"60 contas, as mesmas 60 do canal 'interno'",60,Já registrado no decisoes.md: remover,0.09
+Completude,user_id dos outros 11 arquivos sem cadastro aqui,ok,0 linhas,0,Nenhum,0.0
+Completude,contas grátis cadastradas antes de 07/2024 ausentes,atenção,"5,275 contas antes de 07/2024, 98.7% viraram assinantes (contra 46.1% depois); 2020: 436 de 439. Hipótese a confirmar com o dono do dado: na migração de 07/2024 só as contas que tinham assinado vieram",5275,"Não usar coortes de cadastro anteriores a 07/2024 para taxa de conversão, funil grátis -> pago ou perfil de quem não assina; confirmar com o dono do dado",8.12
+Validade,user_id fora do padrão u_[0-9a-f]{8},ok,0,0,Nenhum,0.0
+Validade,e-mail com formato inválido,ok,0,0,Nenhum,0.0
+Validade,datas que não convertem (cadastro e nascimento),ok,cadastro: 0; nascimento: 0; padrões do cadastro: {'9999-99-99 99:99:99': 64948},0,Nenhum,0.0
+Validade,sexo com grafias diferentes,atenção,"6 grafias para F e M (F, Fem, feminino; M, Masc, masculino); 24,830 fora de F/M; 0 sem mapeamento",24830,"Padronizar: F, Fem, feminino -> F; M, Masc, masculino -> M; vazio -> não informado",38.23
+Validade,sistema com grafias diferentes,atenção,"5 grafias para 2 valores; 16,067 fora de android/ios",16067,"Padronizar em minúsculas: android, ios",24.74
+Validade,cidade com grafias diferentes (texto livre),atenção,"36 grafias para 13 cidades (Sampa, SP, S. Paulo, BSB, Floripa...); 13,601 fora da grafia oficial",13601,Padronizar pela tabela de grafias deste notebook; a uf já vem certa e pode ser usada no lugar da cidade,20.94
+Validade,"canal_aquisicao, relogio_conectado, uf e versao_app fora da lista observada",ok,"listas sem variação de grafia: 7 canais, 3 relógios, 11 UFs, 6 versões",0,Nenhum,0.0
+Validade,nascimento no futuro (idade negativa),atenção,"194 contas, todas com 2031-05-12",194,Tratar como nascimento não informado,0.3
+Validade,idade acima de 100 anos,atenção,412: são os 1900-01-01 da Completude (mesma causa),412,Ver 'nascimento disfarçado de vazio',0.63
+Validade,cep_prefixo com 2 dígitos (zero à esquerda perdido),atenção,"1,094 contas, todas de São Paulo capital, valores de 10 a 83 (seriam 010 a 083)",1094,Completar com zero à esquerda (zfill(3)) antes de usar o CEP,1.68
+Consistência,cidade com mais de uma uf,ok,0 cidades,0,Nenhum,0.0
+Consistência,CEP fora da faixa da uf (com o zero à esquerda reposto),ok,0,0,Nenhum,0.0
+Consistência,Apple Watch em conta que não é iOS,ok,0; e Garmin só aparece em Android,0,Nenhum,0.0
+Consistência,treino de relógio em conta com outro relógio (ou nenhum) no cadastro,ok,0,0,Nenhum,0.0
+Consistência,nascimento depois do cadastro,atenção,194: são os 2031-05-12 da Validade (mesma causa),194,Ver 'nascimento no futuro',0.3
+Consistência,assinatura que começa antes do cadastro,esperado,"42 assinaturas, todas de contas de teste (cortesia, interno, inicio 2025-01-10)",42,Saem com as contas de teste (decisão já registrada),0.06
+Consistência,"evento, cobrança, treino ou amizade antes do dia do cadastro",ok,0,0,Nenhum,0.0
+Unicidade,user_id repetido,ok,0,0,Nenhum,0.0
+Unicidade,e-mail repetido exatamente como gravado,ok,0,0,Nenhum,0.0
+Unicidade,mesma pessoa com duas contas (e-mail igual sem considerar maiúsculas),atenção,"959 pares; a conta mais nova tem sempre o e-mail em maiúsculas, perfil 100% igual, criada 1 a 199 dias depois, e 0 delas aparece em algum outro arquivo. Hipótese a confirmar com o dono do dado: cópia gerada pelo sistema",959,Remover a conta com e-mail em maiúsculas (a cópia) e manter a original,1.48
+Unicidade,linha inteira repetida sem o user_id,ok,0,0,Nenhum,0.0
+Temporalidade,cadastro antes do lançamento (09/2020),ok,0,0,Nenhum,0.0
+Temporalidade,"cadastro depois do corte (até 04/2027, data no futuro)",atenção,"119 contas, todas cópias da seção 4 (mesma causa); nenhuma tem registro em outro arquivo",119,Saem com as cópias; nenhuma análise usa cadastro posterior ao corte,0.18
+Temporalidade,fuso de data_cadastro (dicionário não diz),ok,"em horário de Brasília, o trial cai no dia do cadastro em 46,996 de 46,996 contas; lendo o trial como texto, 3,723 cairiam em outro dia: o cadastro está em horário de Brasília",0,Usar data_cadastro como horário de Brasília,0.0
+Temporalidade,hora do cadastro não confiável,atenção,"antes de 07/2024 só a data foi gravada (5,275 contas às 12:00:00); depois, o trial começa até 17h antes ou 17h depois do cadastro, mas sempre no mesmo dia",64948,"Usar só a data do cadastro; no mesmo dia, considerar o cadastro anterior a qualquer evento",100.0
+Temporalidade,mês sem cadastro,ok,0,0,Nenhum,0.0
+Temporalidade,salto acima de 50% nos janeiros,esperado,"2025-01, 2026-01: cadastros +99% ou mais, e as assinaturas sobem junto (+91% ou mais): sazonalidade de começo de ano",6795,Nenhum; considerar o mês de cadastro nas análises,10.46
+Temporalidade,salto de 07/2024 (mudança de universo),atenção,"de 79 para 1,763 cadastros; a razão cadastros/assinaturas passa de ~1 para ~2: é a ausência das contas grátis antigas (Completude, mesma causa)",1763,Ver 'contas grátis cadastradas antes de 07/2024 ausentes',2.71
+Temporalidade,"colunas sem data de observação (versao_app, relogio_conectado, sistema)",atenção,"valores do dia da exportação, sem data; podem refletir o que aconteceu depois do corte",64948,"Não usar como preditor sem data; para relógio, usar a origem dos treinos do parquet até o corte",100.0

@@ -1,0 +1,4 @@
+tabela,passo,linhas,observacao
+uso_mensal_limpo,0. Arquivo bruto,591662,"0 de teste, 0 duplicadas, 0 repetidas: nada a remover"
+uso_mensal_limpo,"1. Tipos, situação e marcas",591662,"41,493 meses sem uso"
+uso_mes,3. Uma linha por linha do painel,327771,"arquivo: 255,634, antes_do_arquivo: 45,198, zero_2025: 23,249, sem_linha_2026: 3,690"

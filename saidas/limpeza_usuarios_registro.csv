@@ -1,0 +1,8 @@
+passo,regra,linhas,removidas
+0. Arquivo bruto,usuarios.csv sem filtro,64948,0
+1. Sem contas de teste,e-mail não termina em @vitaliza.com.br,64888,60
+2. Sem contas-cópia,e-mail com maiúscula (a conta mais nova de um e-mail repetido),63929,959
+3. Data de cadastro,"só a data, em horário de Brasília",63929,0
+4. Nascimento e idade,"1900-01-01, 2031-05-12 e vazio viram ausente; idade_no_corte",63929,0
+5. Categorias,"sexo, sistema, cidade e cep_prefixo padronizados",63929,0
+6. Coorte anterior ao log,cadastro_antes_do_log = data_cadastro < 2024-07-01,63929,0

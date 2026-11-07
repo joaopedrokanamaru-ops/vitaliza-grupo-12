@@ -1,0 +1,10 @@
+tabela,passo,linhas,observacao
+log,0. Arquivo bruto,275565,
+log,1. Data em Brasília,275565,"21,951 mudam de dia; 0 de contas de teste"
+log,2. Eventos do teste grátis marcados,275565,"72,873 do trial; 202,692 da assinatura"
+log,3. Assinatura de cada evento,275565,398 avisos atrasados contam no mês da perda
+log,4. eventos_assinatura_limpo.parquet,275565,
+painel,6.1 Uma linha por assinatura e mês,327771,"esperado 327,771"
+painel,6.2 Situação no mês e eventos,327771,"202,692 eventos da assinatura distribuídos, todos em alguma linha"
+resumo,7. Uma linha por assinatura,32583,
+trials,8. Uma linha por teste grátis,46996,"27,383 converteram; 19,143 expiraram; 470 em andamento"

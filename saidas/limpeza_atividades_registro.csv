@@ -1,0 +1,9 @@
+passo,regra,linhas,removidas,alteradas
+0. Arquivo bruto,atividades.parquet sem filtro,1254475,0,0
+1. Sem cópia exata,todas as colunas iguais menos atividade_id; fica o menor id,1254474,1,0
+2. Horário em Brasília,inicio do Garmin -3h; data = dia em Brasília,1254474,0,207954
+3. Tipos em português,"run, walk, ride, strength, hiit traduzidos",1254474,0,486863
+4. Sem duplicata app + relógio,"mesma conta, horário e tipo; sai o registro do app, fica o do relógio",1252488,1986,0
+5. Distância recalculada,distancia_km = duracao_min / ritmo_min_km quando passa do dobro,1252488,0,997
+6. Duração 0 como ausente,duracao_min 0 vira ausente; duracao_zero e sem_outra_prova,1252488,0,3645
+7. Falha de GPS mantida,"distância e ritmo ausentes, sem imputação; gps_ok = False é a marca",1252488,0,0

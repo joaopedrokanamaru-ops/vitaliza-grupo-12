@@ -1,0 +1,7 @@
+passo,regra,linhas,removidas,alteradas
+0. Arquivo bruto,campanha_ago26.csv sem filtro,14120,0,0
+1. Data e hora do envio,enviado_em como data e hora (Brasília); vazio do controle vira ausente,14120,0,10541
+2. Textos e engajamento,vazios estruturais viram ausente; engajamento como booleano,14120,0,17806
+"3. Tratamento, plano e canal no envio",tratado; plano_no_envio e canal_cobranca_no_envio pelo log,14120,0,0
+4. Fora da janela do envio,"assinou às 10h ou depois, ou expirou antes das 10h de 10/08",14120,0,0
+5. Aniversário dos anuais,aniversario_anual; aniversario_na_janela até 30/09/2026,14120,0,0

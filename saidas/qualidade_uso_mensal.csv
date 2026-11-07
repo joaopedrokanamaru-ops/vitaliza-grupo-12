@@ -1,0 +1,30 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,"vazios por coluna (inclusive nan, null, -)",ok,0 células,0,Nenhum,0.0
+Completude,linhas de contas de teste (@vitaliza.com.br),ok,0,0,Se houver: excluir,0.0
+Completude,"linhas de contas duplicadas (e-mail com maiúscula, diagnóstico de usuarios.csv)",ok,0,0,Se houver: excluir junto com a conta,0.0
+Completude,mês sem treino em 2025,atenção,"0 linhas com atividades = 0 em 2025, contra 303,735 em 2026: em 2025 só existe linha no mês com treino",0,"Em 2025, tratar usuário-mês sem linha como 0 treino, 0 minuto e 0 dia ativo; sessoes_app desse mês é desconhecida (não usar sessoes_app de 2025 para medir quem parou de abrir o app)",0.0
+Completude,linhas com tudo zerado (sem treino e sem abrir o app),esperado,"41,493 linhas, todas de 2026",41493,Não é erro: em 2026 o arquivo grava também o mês sem uso. Manter,7.01
+Completude,"assinante ativo no mês sem linha, 2025",atenção,"23,249 de 146,714 linhas do painel; coerente com 2025 só gravar mês com treino",23249,"Tratar como mês sem treino (0), com sessoes_app desconhecida",3.93
+Completude,"assinante ativo no mês sem linha, 2026",atenção,"3,690 de 135,859 linhas do painel; 933 delas têm treino no parquet",3690,"Em 2026, medir uso pelo parquet (decisão de 31/10/2026); para sessoes_app, mês sem linha fica como desconhecido. Perguntar ao dono do dado por que a linha falta",0.62
+Completude,usuário-mês com treino no parquet e sem linha no uso (2026),atenção,"2,173 usuário-mês de 1,998 contas",2173,"Em 2026, partir do parquet para contar treinos",0.37
+Completude,meses faltando no meio da sequência de cada conta,atenção,"59,438 buracos em 34,546 contas",59438,"Ao montar série por conta, preencher o mês faltante: 0 treino; sessoes_app desconhecida",10.05
+Validade,user_id fora do padrão ou sem cadastro,ok,0 fora do padrão; 0 sem cadastro,0,Se houver: excluir e registrar,0.0
+Validade,mes fora do formato AAAA-MM ou fora de jan/2025 a set/2026,ok,0 fora do formato; 0 fora do período,0,Se houver: excluir,0.0
+Validade,"número que não converte, não é inteiro ou é negativo",ok,0 não inteiros; 0 negativos,0,Nenhum,0.0
+Validade,dias_ativos maior que os dias do mês,ok,0 linhas,0,Nenhum,0.0
+Validade,minutos por treino fora de 5 a 300,ok,0 linhas (observado: 12 a 222),0,Nenhum,0.0
+Validade,"mais de 10 aberturas do app por dia, na média do mês",ok,0 linhas (máximo 153 no mês),0,Nenhum,0.0
+Consistência,ar livre + vídeo diferente do total de treinos,ok,0 linhas,0,Nenhum,0.0
+Consistência,dias ativos maior que o número de treinos,ok,0 linhas,0,Nenhum,0.0
+Consistência,"treino sem dia ativo, ou dia ativo sem treino",ok,0 linhas,0,Nenhum,0.0
+Consistência,"treino sem minutos, ou minutos sem treino",ok,0 linhas,0,Nenhum,0.0
+Consistência,treino registrado sem nenhuma abertura do app,ok,0 linhas,0,Nenhum,0.0
+Consistência,mês anterior ao mês de cadastro,ok,0 linhas,0,Nenhum,0.0
+Consistência,atividades × treinos de origem app no parquet (2026),atenção,"bate em 91.5% dos usuário-mês; 37,440 divergem de ±1 a ±8, de forma simétrica, em todos os meses. Não é o fuso do mês (91.3%) nem a duração 0 (91.0%)",37440,"Em 2026, contar treinos pelo parquet. A diferença fica em aberto com o dono do dado",6.33
+Consistência,atividades × todos os treinos do parquet (2026),atenção,bate em 86.5%: os treinos sincronizados do relógio ficam de fora (decisão de 31/10/2026),59472,"Já decidido: em 2026, medir uso pelo parquet",10.05
+Consistência,"minutos × soma da duração no parquet, onde a contagem bate (2026)",atenção,"iguais em 74.6%; razão mediana 0.94 (p1 0.40, p99 2.49)",102134,"Em 2026, somar minutos pelo parquet; em 2025, usar minutos daqui sabendo que é aproximado",17.26
+Unicidade,user_id + mes repetido,ok,0,0,Se houver: investigar antes de somar,0.0
+Unicidade,linha inteira repetida,ok,0,0,Se houver: manter a primeira,0.0
+Temporalidade,mês com salto de volume acima de 50%,atenção,"2026-01: +202%. Só as linhas com treino dão 12,686 por mês em 2025 e 15,077 em 2026, com a mesma divisão por situação: o salto é 2026 passar a gravar o mês sem treino (ex-assinantes e contas grátis paradas)",41130,"Para comparar 2025 com 2026, usar só linhas com treino (ou preencher 2025 com zero); não comparar contagem de linhas, média por conta nem sessoes_app entre os anos",6.95
+Temporalidade,conta com linha antes de começar o teste ou a assinatura,ok,0 linhas: em 2025 não aparece uso de conta grátis que só assinaria depois,0,Nenhum,0.0
+Temporalidade,colunas sem data dentro do mês,esperado,o mês esconde quando os treinos aconteceram; uma variável do mês do corte (set/2026) inclui o mês inteiro,0,"Ao usar como variável de um mês, pegar só meses fechados antes da data da previsão",0.0

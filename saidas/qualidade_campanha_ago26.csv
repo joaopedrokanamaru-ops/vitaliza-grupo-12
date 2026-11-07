@@ -1,0 +1,21 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,"vazio disfarçado (nan, null, -)",ok,0,0,Nenhum,0.0
+Completude,"envio, canal ou título vazio nos grupos tratados; oferta vazia no cupom",ok,0,0,Nenhum,0.0
+Completude,"controle sem envio, canal, título nem oferta",esperado,"as 3,579 linhas do controle, nas quatro colunas: vazio estrutural",0,Nenhum: é o desenho do experimento,0.0
+Completude,"contas de teste, cópias ou sem cadastro no sorteio",ok,teste: 0; cópias: 0; sem cadastro: 0,0,Se houver: excluir,0.0
+Completude,população do sorteio contra os pagantes de 10/08 (número-prova 14.120),esperado,"as 14.120 contas estão entre os 14,122 que pagavam em algum momento de 10/08; 2 pagantes do dia ficaram fora, ambos expirados em 10/08 (como outros 33 que entraram no sorteio)",0,Nenhum: 2 contas em 14.122 não mudam o resultado; registrar como limite do arquivo,0.0
+Completude,cupom prometido pelo enunciado não aparece nas cobranças,atenção,"0 cobranças de R$ 27,93 depois do envio (1,420 mensais receberam o cupom; os valores do grupo cupom são os mesmos do controle); no anual, 0 renovações do grupo cupom vieram ~1 mês depois do aniversário. Hipótese a confirmar com o dono do dado: o cupom não foi resgatado por ninguém, ou o resgate não chegou às cobranças",3472,"Medir o efeito do cupom como efeito da mensagem (intenção de tratar), sem custo de desconto observado; perguntar ao dono do dado se houve resgate antes de usar o custo do cupom na conta de retorno",24.59
+Validade,"grupo, canal, oferta e engajamento fora do domínio",ok,0,0,Nenhum,0.0
+Validade,título diferente do enunciado para o grupo,ok,0,0,Nenhum,0.0
+Validade,enviado_em que não converte,ok,"0; padrões: {'9999-99-99 99:99:99': 10541, '': 3579}",0,Nenhum,0.0
+Validade,user_id fora do padrão,ok,0,0,Nenhum,0.0
+Consistência,tamanho dos grupos (qui² de aderência),ok,"{'controle': 3579, 'conteudo': 3554, 'desafio': 3515, 'cupom': 3472}; qui² = 1.86 com 3 gl, p = 0.61",0,Nenhum,0.0
+Consistência,"perfil dos grupos (plano, canal, tempo de assinatura, coorte, relógio, renovação desligada)",ok,6 perfis testados; menor p = 0.13; maior diferença entre grupos 3.6 p.p.,0,Nenhum,0.0
+Consistência,controle com abertura ou clique,ok,0,0,Nenhum,0.0
+Consistência,clicou sem abrir push nem e-mail,ok,0,0,Nenhum,0.0
+Consistência,oferta diferente da prevista para o plano na data do envio,ok,0; cada assinatura tem um único plano em todo o log,0,Nenhum,0.0
+Consistência,sorteado que assinou depois do envio ou saiu antes dele,atenção,48 contas (38 nos grupos tratados): 41 assinaram depois das 10h de 10/08 e 7 expiraram antes das 10h; a mensagem não podia agir sobre elas,48,"Analisar com todos (intenção de tratar) e, como sensibilidade, sem essas contas, aplicando a mesma regra nos quatro grupos (inclusive no controle)",0.34
+Unicidade,user_id repetido ou linha inteira repetida,ok,0 e 0,0,Nenhum,0.0
+Temporalidade,envio fora de 10/08/2026 10:00,ok,0,0,Nenhum,0.0
+Temporalidade,janela entre o envio e o corte,atenção,"52 dias (10/08 a 30/09); dos 8,341 anuais, só 1,162 fazem aniversário nesse intervalo e podem sair por não renovar; a janela é menor que os 60 dias do modelo de saída",7179,"Medir o efeito em até 51 dias e separar mensal de anual; no anual, usar só quem tem aniversário na janela (ou a renovação desligada como desfecho intermediário)",50.84
+Temporalidade,abertura e clique sem data,atenção,"abriu_push, abriu_email e clicou não dizem quando aconteceram: podem ser posteriores ao corte",14120,Não usar abertura e clique como preditor de saída nem como filtro do efeito (são consequência do tratamento); usar só para descrever a atenção à mensagem,100.0

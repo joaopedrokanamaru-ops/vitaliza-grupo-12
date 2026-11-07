@@ -1,0 +1,8 @@
+tabela,passo,linhas,observacao
+log,0. Arquivo bruto,165548,0 de contas de teste; todo user_id tem assinatura
+log,1. Valor como número,165548,"19,750 no formato R$ 0,00"
+log,2. Data em Brasília,165548,"12,871 mudam de dia"
+log,3. Sem as cópias,163607,"1,941 removidas"
+log,4-6. pagamentos_limpo.parquet,163607,
+mes,7. Uma linha por linha do painel,327771,"159,169 com alguma cobrança"
+resumo,8. Uma linha por assinatura,32583,

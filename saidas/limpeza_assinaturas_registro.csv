@@ -1,0 +1,6 @@
+passo,regra,linhas,removidas
+0. Arquivo bruto,assinaturas.csv sem filtro,32643,0
+1. Sem contas de teste,e-mail não termina em @vitaliza.com.br,32583,60
+2. Tipos convertidos,inicio e data_fim como data; motivo_fim vazio vira ausente,32583,0
+3. Situação no corte,"ativa_no_corte, duracao_dias, duracao_censurada",32583,0
+4. Coorte anterior ao log,inicio_antes_do_log = inicio < 2024-07-01,32583,0

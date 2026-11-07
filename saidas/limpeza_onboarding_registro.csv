@@ -1,0 +1,6 @@
+passo,regra,linhas,removidas,alteradas
+0. Arquivo bruto,onboarding.csv sem filtro,63929,0,0
+1. Data da resposta,respondido_em como data,63929,0,63929
+2. Respostas sem conteúdo,objetivo e como conheceu sem conteúdo viram ausente; nivel vazio vira ausente,63929,0,25283
+3. Dias por semana,"N, Nx, N vezes -> N; todos -> 7; vazio -> ausente",63929,0,24034
+4. Como conheceu,20 respostas frequentes; influenciador com os 6 @ corrigidos,63929,0,4088

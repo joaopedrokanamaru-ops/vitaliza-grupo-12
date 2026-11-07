@@ -1,0 +1,18 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,objetivo_texto: vazio ou sem conteúdo,atenção,"5,467 vazios e 13,768 sem conteúdo (30.1%); 28.9% a 30.4% por ano",19235,Tratar a resposta sem conteúdo como não respondida (somar aos vazios); não imputar,30.09
+Completude,como_conheceu: vazio ou sem conteúdo,atenção,"4,586 vazios e 11,515 sem conteúdo (25.2%); 24.3% a 28.0% por ano",16101,Tratar a resposta sem conteúdo como não respondida (somar aos vazios); não imputar,25.19
+Completude,nivel: vazio,esperado,"4,513 (7.1%); 6.7% a 8.4% por ano",4513,Manter como não respondido; não imputar,7.06
+Completude,dias_por_semana: vazio,esperado,"6,368 (10.0%); 9.7% a 11.1% por ano",6368,Manter como não respondido; não imputar,9.96
+Completude,"linhas de contas de teste, cópias ou sem cadastro",ok,teste: 0; cópias: 0; sem cadastro: 0,0,Se houver: excluir,0.0
+Completude,contas do cadastro limpo sem questionário (e o contrário),ok,0,0,Nenhum,0.0
+Validade,"nivel fora de iniciante, intermediario, avancado",ok,0,0,Nenhum,0.0
+Validade,dias_por_semana escrito de formas diferentes,atenção,"22 grafias para 7 valores (3, 3x, 3 vezes, todos...); 24,034 fora do número puro; 0 sem conversão",24034,"Converter para número de 1 a 7: 'N', 'Nx' e 'N vezes' -> N; 'todos' -> 7; vazio -> ausente",37.59
+Validade,respondido_em que não converte,ok,0,0,Nenhum,0.0
+Validade,como_conheceu com erro de digitação,atenção,"300 grafias para 20 respostas; 4,088 com letras trocadas, todas atribuídas a uma resposta do mesmo canal de aquisição (100%); 6 influenciadores em 70 grafias de @",4088,Padronizar pela resposta frequente mais parecida (tabela deste notebook) e o @ pelo do influenciador mais parecido,6.39
+Consistência,como conheceu (declarado) diferente do canal de aquisição (marketing),ok,"0 de 47,828 respostas; cada resposta pertence a um único canal",0,Nenhum: o como conheceu repete o canal_aquisicao e não traz informação nova,0.0
+Consistência,resposta em dia diferente do cadastro,ok,0,0,Nenhum,0.0
+Privacidade,"e-mail, telefone ou CPF no texto",ok,0,0,Nenhum,0.0
+Privacidade,@ de terceiros no como conheceu,esperado,"7,729 respostas citam o @ de 6 influenciadores parceiros (perfis públicos de divulgação)",7729,Manter o nome do influenciador como categoria; não é dado pessoal de cliente,12.09
+Unicidade,onboarding_id ou user_id repetido,ok,"{'onboarding_id': 0, 'user_id': 0}",0,Nenhum,0.0
+Unicidade,linha repetida sem o onboarding_id,ok,0,0,Nenhum,0.0
+Temporalidade,resposta antes do lançamento ou depois do corte,ok,0,0,Nenhum,0.0

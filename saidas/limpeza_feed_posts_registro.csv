@@ -1,0 +1,6 @@
+passo,regra,linhas,removidas,alteradas
+0. Arquivo bruto,feed_posts.csv sem filtro,119309,0,0
+1. Data e hora,data_hora como horário de Brasília; data,119309,0,119309
+2. Sem posts depois do corte,data_hora até 30/09/2026,119187,122,0
+3. Posts removidos,[post removido] vira texto ausente; marca post_removido,119187,0,1213
+4. Curtidas,curtidas como inteiro,119187,0,119187

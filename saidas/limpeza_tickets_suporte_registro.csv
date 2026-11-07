@@ -1,0 +1,6 @@
+passo,regra,linhas,removidas,alteradas
+0. Arquivo bruto,tickets_suporte.csv sem filtro,4422,0,0
+1. Abertura em Brasília,aberto_em como horário de Brasília,4422,0,4422
+2. Status no corte,resolvido só se resolvido_em <= 30/09/2026; senão aberto,4422,0,41
+3. Categoria do texto,categoria mais frequente do mesmo texto; marca categoria_diverge,4422,0,1419
+4. Falha de GPS,marca sobre_falha_gps,4422,0,0

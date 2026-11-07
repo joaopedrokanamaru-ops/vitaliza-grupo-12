@@ -1,0 +1,18 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,texto do cliente vazio ou sem conteúdo,ok,0 e 0,0,Nenhum,0.0
+Completude,resolvido_em vazio nos chamados não resolvidos,esperado,"1,505 (aberto ou sem_resposta)",0,Nenhum: vazio estrutural,0.0
+Completude,"linhas de contas de teste, cópias ou sem cadastro",ok,teste: 0; cópias: 0; sem cadastro: 0,0,Se houver: excluir,0.0
+Validade,"canal, status ou categoria fora do domínio",ok,"{'canal': [], 'status': [], 'categoria_atendente': []}",0,Nenhum,0.0
+Validade,aberto_em ou resolvido_em que não converte,ok,0,0,Nenhum,0.0
+Consistência,status resolvido sem data (ou data sem resolvido),ok,0,0,Nenhum,0.0
+Consistência,resolvido antes de aberto,ok,0,0,Nenhum,0.0
+Consistência,chamado antes do dia do cadastro,ok,0,0,Nenhum,0.0
+Consistência,categoria do atendente diferente da categoria do texto,atenção,"1,419 chamados (32%); a divergência é espalhada por todas as categorias, meses e canais (a categoria mais frequente de cada texto aparece em 68% dos chamados); maior em maio e junho de 2026",1419,"Não usar a categoria do atendente sozinha: classificar o texto do cliente (extração com IA generativa ou a categoria mais frequente do texto, como neste notebook)",32.09
+Privacidade,"e-mail, telefone, CPF ou @ no texto",ok,"{'e-mail': 0, 'telefone': 0, 'CPF': 0, '@ de perfil': 0}",0,Se houver: mascarar antes de qualquer envio a IA,0.0
+Unicidade,ticket_id repetido,ok,0,0,Nenhum,0.0
+Unicidade,"mesma conta, texto e minuto",ok,0,0,Se houver: manter um,0.0
+Unicidade,mesmo problema reaberto pela mesma conta em até 7 dias,ok,0,0,"Nenhum: cada chamado é um contato; para contar problemas por conta, juntar os do mesmo texto em 7 dias",0.0
+Temporalidade,chamado aberto fora de 01/07/2025 a 30/09/2026,ok,0,0,Nenhum,0.0
+Temporalidade,resolução depois do corte (status da exportação),atenção,41 chamados resolvidos de 01/10 a 07/10/2026: no corte estavam abertos,41,"Recalcular o status no corte: resolvido só se resolvido_em <= 30/09/2026; senão, aberto (ou sem_resposta)",0.93
+Temporalidade,salto de chamados em maio e junho de 2026,esperado,"1,627 chamados nos dois meses; os sobre GPS, percurso ou treino perdido passam de 0 para 596 por mês e os demais ficam em 218 (base 215; cancelamento e troca de plano sobem um pouco): é a falha de GPS de 04/05 a 28/06",1197,"Nenhum: é um acontecimento real; nas análises de chamados, separar o período da falha de GPS",27.07
+Temporalidade,fuso de aberto_em (o dicionário não diz),ok,"chamados abertos das 8h às 21h, horário comercial em Brasília (em UTC, seriam das 5h às 18h)",0,Usar aberto_em como horário de Brasília,0.0

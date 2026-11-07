@@ -1,0 +1,16 @@
+criterio,checagem,status,resultado,linhas_afetadas,tratamento_sugerido,% do arquivo
+Completude,texto vazio ou sem conteúdo,ok,0 vazios e 0 sem conteúdo,0,Nenhum,0.0
+Completude,post com o texto removido ([post removido]),atenção,"1,214 posts, espalhados por todos os meses, com curtidas iguais às dos demais: o post existiu e o texto foi apagado depois",1214,Contar o post (atividade na rede) e tratar o texto como ausente; não enviar o marcador para a extração,1.02
+Completude,"linhas de contas de teste, cópias ou sem cadastro",ok,teste: 0; cópias: 0; sem cadastro: 0,0,Se houver: excluir,0.0
+Validade,data_hora que não converte,ok,0,0,Nenhum,0.0
+Validade,curtidas não inteiras ou negativas,ok,0; de 0 a 38,0,Nenhum,0.0
+Consistência,fuso de data_hora (o dicionário não diz),ok,"como está: 10,629 posts até 3h depois do início de um treino; com -3h: 8,307; posts das 6h às 22h, mesma faixa dos treinos em Brasília (em UTC, seriam das 3h às 19h)",0,Usar data_hora como horário de Brasília,0.0
+Consistência,post antes do dia do cadastro do autor,ok,0,0,Nenhum,0.0
+Privacidade,"e-mail, telefone, CPF ou @ no texto",ok,"{'e-mail': 0, 'telefone': 0, 'CPF': 0, '@ de perfil': 0}",0,Se houver: mascarar antes de qualquer envio a IA,0.0
+Unicidade,post_id repetido,ok,0,0,Nenhum,0.0
+Unicidade,"mesmo autor, texto e minuto",ok,0,0,Se houver: manter um,0.0
+Unicidade,mesmo autor e texto no mesmo dia,ok,"0 posts (textos curtos e comuns, horários diferentes)",0,Nenhum: dois treinos no mesmo dia rendem dois posts parecidos,0.0
+Temporalidade,post depois do corte,atenção,122 posts de 01/10 a 07/10/2026,122,Excluir posts depois de 30/09/2026,0.1
+Temporalidade,post antes de 01/07/2025,ok,0,0,Nenhum,0.0
+Temporalidade,mês sem post ou com salto acima de 50%,ok,0,0,Nenhum,0.0
+Temporalidade,curtidas sem data (acumuladas até a exportação),atenção,"as curtidas de cada post são as da exportação, sem data; média de 7.0 a 8.2 por mês",119309,Não usar curtidas como preditor no corte sem considerar que podem incluir curtidas posteriores; preferir o número de posts,100.0
